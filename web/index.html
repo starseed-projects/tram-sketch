@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tram-sketch</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside id="sidebar">
+  <header>
+    <h1 id="region-title">tram-sketch</h1>
+    <p class="sub">Network designer · <a href="https://github.com/starseed-projects/tram-sketch" target="_blank" rel="noopener">tram-sketch</a></p>
+    <div class="text-size" role="group" aria-label="Map text size">
+      <span>Map text</span>
+      <button id="text-smaller" title="Smaller street names and stop labels">A−</button>
+      <button id="text-bigger" title="Bigger street names and stop labels">A+</button>
+    </div>
+  </header>
+
+  <section id="lines-section">
+    <div class="section-head">
+      <h2>Lines</h2>
+      <button id="new-line" class="primary">+ New line</button>
+    </div>
+    <ul id="lines"></ul>
+  </section>
+
+  <section id="stops-section" hidden>
+    <h2 id="stops-title">Stops</h2>
+    <ol id="stops"></ol>
+    <div class="row">
+      <button id="remove-last">Remove last stop</button>
+      <button id="reverse-line">Reverse</button>
+    </div>
+  </section>
+
+  <section id="totals"></section>
+
+  <section class="help">
+    <h2>How to</h2>
+    <ul>
+      <li>Select a line, then <b>click the map</b> to add stops to its end.</li>
+      <li><b>Missed a stop?</b> Click <b>on or near the selected line's track</b> to insert a stop right there.</li>
+      <li>Stops snap onto the nearest main road (level boarding on the line).</li>
+      <li>Click an <b>existing stop</b> to add it to the selected line (interchange).</li>
+      <li><b>Drag</b> stops to move them; track re-routes automatically.</li>
+      <li><b>Ctrl-click</b> the selected line's track to add a bend point; drag it to steer the route. Right-click a bend point to remove it.</li>
+      <li><b>Right-click</b> a stop to rename or remove it.</li>
+      <li>Drag the <b>round handles</b> on curved stretches to shape the curve; right-click a handle to reset it.</li>
+      <li><b>Right-click the track</b> to make a stretch a <b>transit mall</b> (street closed to cars), an <b>own corridor</b> (e.g. through a park), <b>bridge</b> or <b>tunnel</b> — these are smooth curves between bend points.</li>
+      <li>Set a line's type to <b>Cable car</b> for straight spans between stations; bend points act as towers.</li>
+      <li>Zoom in to street level to see the <b>double track</b> alignment.</li>
+      <li><kbd>Esc</kbd> deselects · <kbd>Ctrl+Z</kbd> undo · <kbd>Ctrl+Y</kbd> redo</li>
+    </ul>
+    <div class="row">
+      <label><input type="checkbox" id="show-labels" checked> Stop labels</label>
+      <label title="Where lines share track: one striped line instead of lines side by side"><input type="checkbox" id="striped-shared"> Striped shared track</label>
+      <a href="/network.geojson" class="button">Export GeoJSON</a>
+    </div>
+  </section>
+  <footer id="status">Loading…</footer>
+</aside>
+<main id="map"></main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/leaflet-polylineoffset@1.1.1/leaflet.polylineoffset.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.0.22/leaflet-maplibre-gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# OpenStreetMap downloads: large, and anyone can recreate them
+# with tools/fetch_osm.py
+data/
+regions/*/data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Temporary files from saving
+*.tmp
+
+# Editor and OS clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
