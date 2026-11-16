@@ -45,8 +45,9 @@ Find the bounding box by zooming to your area on [openstreetmap.org](https://www
 - **Ctrl-click** the track to add a bend point and drag it to steer the route.
 - **Right-click the track** to make a stretch a **transit mall** (no cars), **own corridor**, **bridge** or **tunnel**. Off-road stretches are curves you can shape with handles.
 - Line types: **Tram**, **Cable car**, **Depot track**, or **Branch of** another line.
-- Make a line visit the same stop twice to create a **loop**. Loop sections run one way, on the left-hand track.
-- Zoom in to street level to see the **double track**.
+- End a line at the stop where it started to make a **ring**. Trams run both ways around it.
+- Make a line visit the same stop twice mid-route to create a **balloon loop**. Loop sections run one way, on the left-hand track.
+- Zoom in to street level to see the **double track** and **island platforms**. Lines that share track run on the same double track, shown with striped rails.
 - **Map text** buttons enlarge street names and stop labels.
 - `Ctrl+Z` / `Ctrl+Y` undo and redo; `Esc` deselects.
 
