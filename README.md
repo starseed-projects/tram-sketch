@@ -1,6 +1,6 @@
 # tram-sketch
 
-Sketch a light rail network for your city on real streets. Click to place stops and tram-sketch routes the track along OpenStreetMap roads, straight through roundabouts and down the median of divided roads. Runs locally with just Python and a browser.
+Sketch a light rail network for your city, town, or region on real streets. Click to place stops and tram-sketch routes the track along OpenStreetMap roads, straight through roundabouts and down the median of divided roads. Runs locally with just Python and a browser.
 
 **tram-sketch** is a simple tool for designing tram and light rail networks on real streets.
 
@@ -8,7 +8,7 @@ Pick a line colour, click where the stops go, and it routes the track along Open
 
 Your network is saved as a plain GeoJSON file you can share, version and compare. No accounts, no API keys: just Python 3 and a web browser.
 
-It started as a community proposal for light rail on the Central Coast, NSW, Australia, which is included as an example in [`regions/central-coast-nsw`](regions/central-coast-nsw). Use it to sketch a better future for your own city.
+It started as a community proposal for light rail on the Central Coast, NSW, Australia, which is included as an example in [`regions/central-coast-nsw`](regions/central-coast-nsw). Use it to sketch a better future for your own city/town/region.
 
 ## Quick start
 
