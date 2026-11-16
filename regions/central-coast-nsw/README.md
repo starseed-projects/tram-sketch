@@ -2,14 +2,14 @@
 
 A community proposal for a 21st-century light rail network on the Central Coast of New South Wales, Australia.
 
-The Central Coast is a string of towns around lakes, bays and beaches, joined today mostly by car. This proposal links them with frequent light rail:
+The Central Coast is a string of towns around lakes, bays and beaches, joined today mostly by car. This proposal links them with three interlocking light rail **rings**. Trams run both ways around each ring. Where rings meet they share track, with island platforms so changing to the next ring, in either direction, is a walk across the platform.
 
-- **Line 1:** The Entrance, Long Jetty, Bateau Bay, Wamberal, Erina Fair and East Gosford, then through a pedestrianised **Mann Street transit mall** in central Gosford, and north via North Gosford, Lisarow and Ourimbah to Tuggerah and Wyong.
-- **Woy Woy – Terrigal:** a **balloon loop** around the Woy Woy peninsula (Woy Woy, Ettalong Beach, Umina Beach), along Brisbane Water Drive with stops at Point Clare, Tascott and Koolewong stations, over the bridge beside the stadium to the Gosford waterfront, then via Wells Street and Erina Fair to **Terrigal Beach**. A short branch serves Gosford Station and Gosford Hospital.
-- **Ettalong – Terrigal via Empire Bay** (proposal): over the Rip Bridge and along Empire Bay Drive to Kincumber and the Scenic Highway, closing a southern ring.
+- 🔴 **Central Ring** (51 km): Gosford Waterfront, a pedestrianised **Mann Street transit mall**, Five Ways, North Gosford, Niagara Park, Lisarow, Ourimbah, **Tuggerah**, Berkeley Vale, Tumbi Umbi, Killarney, **The Entrance**, Long Jetty, Bateau Bay, Wamberal, **Erina Fair**, East Gosford, **Point Frederick**.
+- 🟢 **Northern Ring** (43 km): **Tuggerah**, Wyong, Watanobbi, Toukley, Wilfred Barrett Drive, **The Entrance**, then back to Tuggerah on track shared with the Central Ring.
+- 🔵 **Southern Ring** (48 km): **Gosford Waterfront**, **Point Frederick**, Wells Street, **Erina Fair**, Terrigal Beach, the Scenic Highway, Kincumber, Empire Bay, the Rip Bridge, Ettalong Beach, Umina Beach, Woy Woy, Brisbane Water Drive (Koolewong, Tascott and Point Clare stations), West Gosford, and over the bridge beside the stadium back to the waterfront. A short branch serves Gosford Station and Gosford Hospital.
 - **Depot:** West Gosford industrial area (placeholder).
 
-Work in progress: the next step is reorganising the network into three interlocking rings (southern, central and northern), each run in both directions.
+Interchanges (shared track, island platforms) are in **bold**.
 
 ## Run it
 
