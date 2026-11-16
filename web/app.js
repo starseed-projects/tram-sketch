@@ -195,10 +195,17 @@ function syncBranches() {
 
 // Segments a line runs in one direction only: everything between two visits to
 // the same stop (a loop, e.g. a balloon loop at the end of the line).
+// A line that ends where it started is a ring: trams run both ways round it.
+const isRing = line => line.stops.length > 2 && line.stops[0] === line.stops[line.stops.length - 1];
+
+// Segments a line runs in one direction only: everything between two visits to
+// the same stop (a balloon loop) -- except the closing of a ring, which is two-way.
 function oneWaySegments(line) {
   const set = new Set(), last = {};
+  const n = line.stops.length;
   line.stops.forEach((id, i) => {
-    if (id in last) for (let j = last[id]; j < i; j++) set.add(j);
+    const ringClose = isRing(line) && i === n - 1 && last[id] === 0;
+    if (id in last && !ringClose) for (let j = last[id]; j < i; j++) set.add(j);
     last[id] = i;
   });
   return set;
@@ -508,7 +515,9 @@ function renderTrack() {
       // One-way (loop) running: trams keep left, so the line uses only the left-hand
       // track for its direction of travel (the offset plugin's positive side is the right).
       const keepLeft = oneWay.has(i) && l.mode !== 'cablecar' ? (ca === a ? -1 : 1) : 0;
-      const striped = stripedShared && shareN > 1 && !keepLeft;
+      // Zoomed in, lines that share track run on the SAME double track (striped);
+      // zoomed out they're drawn side by side unless "striped shared track" is on.
+      const striped = (stripedShared || twinTracks()) && shareN > 1 && !keepLeft;
       const slot = striped ? 0 : keepLeft ? keepLeft / 2 : shareI - (shareN - 1) / 2;
       const DASH = 14;                       // px per colour in a striped shared section
       const stripe = striped ? { dashArray: `${DASH} ${DASH * (shareN - 1)}`, dashOffset: `${-DASH * shareI}`, lineCap: 'butt' } : {};
@@ -608,6 +617,7 @@ function renderTrack() {
       drawCurveHandles(l);
     }
   }
+  drawPlatforms();
 }
 
 // Two draggable handles per curved stretch (own corridor / bridge / tunnel).
@@ -648,6 +658,45 @@ function drawCurveHandles(l) {
         h.addTo(viaLayer);
       });
     }
+  }
+}
+
+// Street level: an island platform between the two tracks at every tram stop,
+// so changing to another line (either direction) is a walk across the platform.
+function drawPlatforms() {
+  if (!twinTracks()) return;
+  const px = m => m / metresPerPixel();
+  const half = Math.max(2.5, px(1.75));
+  // how many different lines use each piece of track (by stop pair)
+  const fams = {};
+  for (const l of state.lines) {
+    if (l.hidden || l.mode === 'cablecar' || l.mode === 'depot') continue;
+    for (let i = 0; i + 1 < l.stops.length; i++) {
+      const k = [l.stops[i], l.stops[i + 1]].sort().join('>');
+      (fams[k] = fams[k] || new Set()).add(familyOf(l));
+    }
+  }
+  // per stop, line the platform up with its most-shared adjoining track
+  const best = {};
+  for (const l of state.lines) {
+    if (l.hidden || l.mode === 'cablecar' || l.mode === 'depot') continue;
+    for (let i = 0; i + 1 < l.stops.length; i++) {
+      const a = l.stops[i], b = l.stops[i + 1];
+      const seg = l.segs[pairKey(a, b)];
+      if (!seg || seg.coords.length < 2) continue;
+      const n = fams[[a, b].sort().join('>')].size;
+      for (const [sid, c] of [[a, seg.coords], [b, seg.coords.slice().reverse()]]) {
+        if (!best[sid] || n > best[sid].n) best[sid] = { n, c };
+      }
+    }
+  }
+  for (const [sid, { c }] of Object.entries(best)) {
+    // ~35 m platform along the track, centred on the stop
+    const s = state.stops[sid], p0 = [s.lat, s.lon];
+    const d = dirOf(p0, pointAlong(c, 17.5));
+    L.polyline([offsetPt(p0, d, -17.5), offsetPt(p0, d, 17.5)],
+               { color: '#8a9096', weight: Math.max(3, 2 * half - 3.5), opacity: 0.9,
+                 lineCap: 'butt', interactive: false }).addTo(trackLayer);
   }
 }
 
